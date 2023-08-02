@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ObjectResponseDto {
+public class CategoryResponseDto {
     private Long id;
     private String name;
+    private String description;
 }
