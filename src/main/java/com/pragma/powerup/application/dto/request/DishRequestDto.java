@@ -13,25 +13,25 @@ import javax.validation.constraints.Pattern;
 @Setter
 public class DishRequestDto {
 
-    @NotBlank(message = "El nombre es requerido")
-    private String nombre;
-    @NotBlank(message = "El precio es requerido")
-    @Pattern(regexp = "^[1-9]\\d*$", message = "El precio debe ser un número entero positivo mayor a cero")
-    private String precio;
-    @NotBlank(message = "La descripcion es requerida")
-    private String descripcion;
-    @NotBlank(message = "La urlImagen es requerida")
-    private String urlImagen;
+    @NotBlank(message = "The name is required")
+    private String name;
+    @NotBlank(message = "The price is required")
+    @Pattern(regexp = "^[1-9]\\d*$", message = "The price must be a positive integer greater than zero")
+    private String price;
+    @NotBlank(message = "The description is required")
+    private String description;
+    @NotBlank(message = "The image url is required")
+    private String urlImage;
 
-    private Boolean activo;
+    private Boolean active;
 
-    @NotNull(message = "El restaurante_id no puede ser nulo")
-    @Min(value = 1, message = "El restaurante_id debe ser mayor a cero")
+    @NotNull(message = "The restaurant_id cannot be null")
+    @Min(value = 1, message = "The restaurant_id must be greater than zero")
     @NumberFormat(style = NumberFormat.Style.NUMBER)
-    private Long restauranteId;
+    private Long restaurantId;
 
-    @NotNull(message = "La categoria_id no puede ser nulo")
-    @Min(value = 1, message = "La categoria_id debe ser mayor a cero")
+    @NotNull(message = "the category_id cannot be null")
+    @Min(value = 1, message = "The category_id must be greater than zero")
     @NumberFormat(style = NumberFormat.Style.NUMBER)
-    private Long categoriaId;
+    private Long categoryId;
 }

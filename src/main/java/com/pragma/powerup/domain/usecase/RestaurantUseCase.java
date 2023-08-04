@@ -41,7 +41,7 @@ public class RestaurantUseCase implements IRestaurantServicePort {
     }
 
     @Override
-    public RestaurantModel getRestaurantByIdPropietario(Long id_propietario) {
+    public RestaurantModel getRestaurantByIdOwner(Long id_propietario) {
         return restaurantPersistencePort.getRestaurantByIdPropietario(id_propietario);
     }
 
@@ -51,7 +51,7 @@ public class RestaurantUseCase implements IRestaurantServicePort {
     }
 
     @Override
-    public List<RestaurantModel> getRestaurantsWithPagination(Integer page, Integer size) {
+    public List<RestaurantModel> getRestaurantWithPagination(Integer page, Integer size) {
         //  if(page>=0) page--;
         return restaurantPersistencePort.getRestaurantsWithPagination(page,size);
     }
