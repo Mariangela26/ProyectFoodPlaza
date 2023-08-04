@@ -78,7 +78,7 @@ public class DishUseCase implements IDishServicePort {
     private void validateOwnerAuthWithOwnerRestaurant(DishModel dishModel){
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idOwnerAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idOwnerAuth = token.getUserAutenticateId(bearerToken);
         Long idOwnerRestaurant =  restaurantPersistencePort.getRestaurantById(dishModel.getRestaurantId().getId()).getIdOwner();
         //if(idOwnerAuth!=idOwnerRestaurant) throw new OwnerAuthMustBeOwnerRestaurantException();
     }

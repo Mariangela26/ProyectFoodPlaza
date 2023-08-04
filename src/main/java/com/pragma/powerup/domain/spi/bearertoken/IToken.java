@@ -3,7 +3,7 @@ package com.pragma.powerup.domain.spi.bearertoken;
 public interface IToken {
     String getBearerToken();
 
-    String getCorreo(String token);
+    String getEmail(String token);
 
-    Long getUsuarioAutenticadoId(String token);
+    Long getUserAutenticateId(String token);
 }

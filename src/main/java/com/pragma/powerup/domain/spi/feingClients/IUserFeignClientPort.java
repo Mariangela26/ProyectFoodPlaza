@@ -3,9 +3,9 @@ package com.pragma.powerup.domain.spi.feingClients;
 import com.pragma.powerup.domain.model.UserModel;
 
 public interface IUserFeignClientPort {
-    Boolean existsUserById(Long usuarioId);
+    Boolean existsUserById(Long userId);
 
-    UserModel getUserById(Long usuarioId);
+    UserModel getUserById(Long userId);
 
-    UserModel getUserByCorreo(String correo);
+    UserModel getUserByEmail(String email);
 }

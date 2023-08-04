@@ -1,6 +1,7 @@
 package com.pragma.powerup.infrastructure.input.rest;
 
 import com.pragma.powerup.application.dto.request.RestaurantRequestDto;
+import com.pragma.powerup.application.dto.response.RestPaginationResponseDto;
 import com.pragma.powerup.application.dto.response.RestaurantResponseDto;
 import com.pragma.powerup.application.handler.IRestaurantHandler;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,8 +60,23 @@ public class RestaurantRestController {
                             schema = @Schema(implementation = RestaurantResponseDto.class))}),
             @ApiResponse(responseCode = "404", description = "Restaurant no found",
                     content = @Content)})
+    @GetMapping("/page/{page}/size/{size}")
+
+    @PreAuthorize("hasAuthority('CLIENT')")
+    public ResponseEntity<List<RestPaginationResponseDto>> getAllRestaurantsPagination(@PathVariable(value = "page" )Integer page, @PathVariable(value = "size") Integer size) {
+        return ResponseEntity.ok(restaurantHandler.getRestWithPagination(page, size));
+    }
+    @Operation(summary = "Get restaurant by Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Restaurant returned",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RestaurantResponseDto.class))}),
+            @ApiResponse(responseCode = "404", description = "Restaurant no found",
+                    content = @Content)})
+
+
+
     @GetMapping("/{id}")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<RestaurantResponseDto> getRestaurantById(@PathVariable(value = "id") Long restaurantId) {
         return ResponseEntity.ok(restaurantHandler.getRestaurantById(restaurantId));
     }
@@ -78,13 +94,13 @@ public class RestaurantRestController {
 
 
 
-    @Operation(summary = "Detele a restaurant")
+    @Operation(summary = "Delete a restaurant")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Restaurant deleted", content = @Content),
             @ApiResponse(responseCode = "404", description = "Restaurant not found", content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deteteRestaurantById(@PathVariable(value = "id") Long restaurantId) {
+    public ResponseEntity<Void> deleteRestaurantById(@PathVariable(value = "id") Long restaurantId) {
         restaurantHandler.deleteRestaurantById(restaurantId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

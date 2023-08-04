@@ -46,7 +46,7 @@ public class OrderUseCase implements IOrderServicePort {
         Date date = new Date();
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idClientAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idClientAuth = token.getUserAutenticateId(bearerToken);
 
         List<String> states = List.of("PENDIENTE", "EN_PREPARACION", "LISTO");
 
@@ -87,7 +87,7 @@ public class OrderUseCase implements IOrderServicePort {
     public List<OrderResponseModel> getAllOrdersWithPagination(Integer page, Integer size, String state) {
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idEmployeeAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idEmployeeAuth = token.getUserAutenticateId(bearerToken);
         RestEmployeeModel restaurantEmployeeModel= restaurantEmployeePersistencePort.findByUserId(String.valueOf(idEmployeeAuth));
 
         List<OrderResponseModel> listOrdersResponse = new ArrayList<>();
@@ -129,7 +129,7 @@ public class OrderUseCase implements IOrderServicePort {
 
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idEmployeeAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idEmployeeAuth = token.getUserAutenticateId(bearerToken);
         RestEmployeeModel restaurantEmployeeModel= restaurantEmployeePersistencePort.findByUserId(String.valueOf(idEmployeeAuth));
         if(restaurantEmployeeModel==null) throw new RestEmployeeNotExistException();
         OrderModel orderModel= orderPersistencePort.getOrderById(idOrder);
@@ -151,7 +151,7 @@ public class OrderUseCase implements IOrderServicePort {
         if(Boolean.FALSE.equals(orderPersistencePort.existsByIdAndState(idOrder, "EN_PREPARACION"))) throw new NoDataFoundException();
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idEmployeeAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idEmployeeAuth = token.getUserAutenticateId(bearerToken);
         RestEmployeeModel restaurantEmployeeModel= restaurantEmployeePersistencePort.findByUserId(String.valueOf(idEmployeeAuth));
         if(restaurantEmployeeModel==null) throw new RestEmployeeNotExistException();
         OrderModel orderModel= orderPersistencePort.getOrderById(idOrder);
@@ -176,7 +176,7 @@ public class OrderUseCase implements IOrderServicePort {
         if(Boolean.FALSE.equals(orderPersistencePort.existsByIdAndState(idOrder, "READY"))) throw new NoDataFoundException();
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idEmployeeAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idEmployeeAuth = token.getUserAutenticateId(bearerToken);
         RestEmployeeModel restaurantEmployeeModel= restaurantEmployeePersistencePort.findByUserId(String.valueOf(idEmployeeAuth));
         if(restaurantEmployeeModel==null) throw new RestEmployeeNotExistException();
         OrderModel orderModel= orderPersistencePort.getOrderById(idOrder);
@@ -201,7 +201,7 @@ public class OrderUseCase implements IOrderServicePort {
     public void cancelOrder(Long idOrder) {
         String bearerToken = token.getBearerToken();
         if(bearerToken==null) throw new OwnerNotAuthenticatedException();
-        Long idClientAuth = token.getUsuarioAutenticadoId(bearerToken);
+        Long idClientAuth = token.getUserAutenticateId(bearerToken);
 
         OrderModel orderModel= orderPersistencePort.getOrderById(idOrder);
         if(orderModel==null) throw new OrderNotExistException();
