@@ -6,10 +6,12 @@ import com.pragma.powerup.domain.spi.feingClients.IUserFeignClientPort;
 import com.pragma.powerup.domain.spi.persistence.*;
 import com.pragma.powerup.domain.usecase.*;
 import com.pragma.powerup.infrastructure.out.feingClients.adapter.UserFeignAdapter;
-import com.pragma.powerup.infrastructure.out.feingClients.mapper.IUserFeignClients;
+import com.pragma.powerup.infrastructure.out.feingClients.UserFeignClients;
+import com.pragma.powerup.infrastructure.out.feingClients.mapper.IUserDtoMapper;
 import com.pragma.powerup.infrastructure.out.jpa.adapter.*;
 import com.pragma.powerup.infrastructure.out.jpa.mapper.*;
 import com.pragma.powerup.infrastructure.out.jpa.repository.*;
+import com.pragma.powerup.infrastructure.out.token.TokenAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +32,7 @@ public class BeanConfiguration {
     private final ICategoryEntityMapper categoryEntityMapper;
 
 
-    private final IUserFeignClients userFeignClient;
+    private final UserFeignClients userFeignClient;
     private final IUserDtoMapper userDtoMapper;
 
     private  final IRestEmployeeRepository restaurantEmployeeRepository;

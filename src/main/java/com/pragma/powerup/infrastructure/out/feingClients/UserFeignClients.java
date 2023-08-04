@@ -1,4 +1,4 @@
-package com.pragma.powerup.infrastructure.out.feingClients.mapper;
+package com.pragma.powerup.infrastructure.out.feingClients;
 
 import com.pragma.powerup.infrastructure.out.feingClients.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "users-service", url = "localhost:8081/api/v1/user")
-public interface IUserFeignClients {
+public interface UserFeignClients {
 
     @GetMapping("/existsUserById/{id}")
     Boolean existsUserById(@PathVariable(value = "id") Long userId);

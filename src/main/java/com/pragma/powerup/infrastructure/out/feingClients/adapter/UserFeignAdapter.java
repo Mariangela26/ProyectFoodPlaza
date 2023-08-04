@@ -2,7 +2,9 @@ package com.pragma.powerup.infrastructure.out.feingClients.adapter;
 
 import com.pragma.powerup.domain.model.UserModel;
 import com.pragma.powerup.domain.spi.feingClients.IUserFeignClientPort;
+import com.pragma.powerup.infrastructure.out.feingClients.UserFeignClients;
 import com.pragma.powerup.infrastructure.out.feingClients.dto.UserDto;
+import com.pragma.powerup.infrastructure.out.feingClients.mapper.IUserDtoMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -24,8 +26,8 @@ public class UserFeignAdapter implements IUserFeignClientPort {
     }
 
     @Override
-    public UserModel getUserByCorreo(String correo) {
-        UserDto userDto= userFeignClients.getUserByCorreo(correo);
+    public UserModel getUserByEmail(String correo) {
+        UserDto userDto= userFeignClients.getUserByEmail(correo);
         return userDtoMapper.toUserModel(userDto);
     }
 }
